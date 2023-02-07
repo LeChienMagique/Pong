@@ -15,7 +15,6 @@ public class BallController: MonoBehaviour {
 	void Start() {
 		rb       = GetComponent<Rigidbody>();
 		velocity = (Vector3.right) * Speed;
-		// rb.velocity = velocity;
 		rb.AddForce(velocity, ForceMode.VelocityChange);
 	}
 
