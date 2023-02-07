@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
@@ -10,11 +7,10 @@ using Vector3 = UnityEngine.Vector3;
 public class BallController: MonoBehaviour {
 	private Rigidbody rb;
 
-	public float SpeedIncrease;
+	public float SpeedMultiplier;
 	public float Speed;
 
 	private Vector3 velocity;
-	private float   rotationToggle = -1f;
 
 	void Start() {
 		rb       = GetComponent<Rigidbody>();
@@ -42,9 +38,8 @@ public class BallController: MonoBehaviour {
 			float ratio = (ballZ / (size / 2));
 			ratio = Math.Clamp(ratio, -1, 1);
 
-			Quaternion rotation = Quaternion.Euler(0, -45f * ratio, 0);
-			// rotationToggle *= -1;
-			rb.AddForce(rb.velocity * SpeedIncrease, ForceMode.VelocityChange);
+			Quaternion rotation = Quaternion.Euler(0, -45f * ratio * (transform.position.x > 0 ? -1 : 1), 0);
+			rb.AddForce(rb.velocity * SpeedMultiplier, ForceMode.VelocityChange);
 			rb.velocity = rotation * rb.velocity;
 		}
 	}
