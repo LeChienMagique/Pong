@@ -29,6 +29,7 @@ public class PowerUpSpawner: MonoBehaviour {
 			stopwatch = 0;
 			GameObject powerUp = Instantiate(PowerUpPrefab, GetRandomPosition(), Quaternion.identity);
 			powerUp.GetComponent<PowerUp>().PaddleManagerGO = PaddleManagerGO;
+			powerUps.Add(powerUp);
 		}
 	}
 

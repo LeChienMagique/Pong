@@ -23,8 +23,8 @@ public class PaddleManager: MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		float player1 = Input.GetAxisRaw("Player1");
-		float player2 = Input.GetAxisRaw("Player2");
+		float player1 = Input.GetAxisRaw("Vertical");
+		float player2 = Input.GetAxisRaw("Vertical_2");
 
 		float p1Force = player1 * LeftPaddleSpeed * Time.deltaTime;
 		float p2Force = player2 * RightPaddleSpeed * Time.deltaTime;

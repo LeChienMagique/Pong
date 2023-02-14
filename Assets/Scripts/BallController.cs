@@ -5,7 +5,8 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class BallController: MonoBehaviour {
-	private Rigidbody rb;
+	private Rigidbody   rb;
+	private AudioSource audioSource;
 
 	public  float SpeedMultiplier;
 	private float initialSpeed = 25f;
@@ -13,13 +14,15 @@ public class BallController: MonoBehaviour {
 	public int LastPlayerTouched = 1;
 
 	void Start() {
-		rb = GetComponent<Rigidbody>();
+		audioSource = GetComponent<AudioSource>();
+		rb          = GetComponent<Rigidbody>();
 		rb.AddForce(Vector3.right * initialSpeed, ForceMode.VelocityChange);
 	}
 
-
 	private void OnCollisionEnter(Collision collision) {
 		if (!collision.gameObject.CompareTag("Player")) return;
+
+		audioSource.Play();
 
 		LastPlayerTouched = LastPlayerTouched == 1 ? 2 : 1;
 		BoxCollider paddleBColl = collision.gameObject.GetComponent<BoxCollider>();

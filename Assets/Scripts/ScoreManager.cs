@@ -1,4 +1,9 @@
+using System;
+using System.Drawing;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Color = System.Drawing.Color;
 
 public class ScoreManager: MonoBehaviour {
 	public  GameObject     Ball;
@@ -10,9 +15,13 @@ public class ScoreManager: MonoBehaviour {
 	public  GameObject     PowerUpSpawner;
 	private PowerUpSpawner powerUpSpawner;
 
+	public  GameObject      ScoreText;
+	private TextMeshProUGUI scoreText;
+
 	private void Start() {
 		ballController = Ball.GetComponent<BallController>();
 		powerUpSpawner = PowerUpSpawner.GetComponent<PowerUpSpawner>();
+		scoreText      = ScoreText.GetComponent<TextMeshProUGUI>();
 	}
 
 	private string PlayerIDToString(int playerId) => playerId == 1 ? "Left" : "Right";
@@ -32,7 +41,25 @@ public class ScoreManager: MonoBehaviour {
 			Debug.Log($"{PlayerIDToString(player)} paddle scored, score is now: {player1Score} - {player2Score}");
 		}
 		ResetBall(player);
+		UpdateScoreText(player);
 		KillPowerUps();
+	}
+
+	private string ColorToHex(Color color) => "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
+
+	private void UpdateScoreText(int player) {
+		Color p1Color = Color.FromArgb(0, 255, 255 - (int) Math.Round((float) player1Score / 11 * 255));
+		Color p2Color = Color.FromArgb(0, 255, 255 - (int) Math.Round((float) player2Score / 11 * 255));
+		switch (player) {
+			case 1:
+				scoreText.text = $"<u><b><color={ColorToHex(p1Color)}>{player1Score}</color></b></u> - " +
+				                 $"<color={ColorToHex(p2Color)}>{player2Score}</color>";
+				break;
+			case 2:
+				scoreText.text = $"<color={ColorToHex(p1Color)}>{player1Score}</color> - " +
+				                 $"<u><b><color={ColorToHex(p2Color)}>{player2Score}</color></b></u>";
+				break;
+		}
 	}
 
 	private void ResetBall(int scoringPlayer) {
