@@ -8,6 +8,8 @@ using Color = System.Drawing.Color;
 public class ScoreManager: MonoBehaviour {
 	public  GameObject     Ball;
 	private BallController ballController;
+	public  GameObject     PaddleManager;
+	private PaddleManager  paddleManager;
 
 	private int player1Score;
 	private int player2Score;
@@ -22,6 +24,7 @@ public class ScoreManager: MonoBehaviour {
 		ballController = Ball.GetComponent<BallController>();
 		powerUpSpawner = PowerUpSpawner.GetComponent<PowerUpSpawner>();
 		scoreText      = ScoreText.GetComponent<TextMeshProUGUI>();
+		paddleManager  = PaddleManager.GetComponent<PaddleManager>();
 	}
 
 	private string PlayerIDToString(int playerId) => playerId == 1 ? "Left" : "Right";
@@ -43,6 +46,7 @@ public class ScoreManager: MonoBehaviour {
 		ResetBall(player);
 		UpdateScoreText(player);
 		KillPowerUps();
+		ResetPaddles();
 	}
 
 	private string ColorToHex(Color color) => "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
@@ -60,6 +64,15 @@ public class ScoreManager: MonoBehaviour {
 				                 $"<u><b><color={ColorToHex(p2Color)}>{player2Score}</color></b></u>";
 				break;
 		}
+	}
+
+	private void ResetPaddles() {
+		paddleManager.PaddleLeft.transform.localScale  = new Vector3(1, 1, 10);
+		paddleManager.PaddleRight.transform.localScale = new Vector3(1, 1, 10);
+		paddleManager.PaddleLeft.transform.position    = new Vector3(-35, 0, 0);
+		paddleManager.PaddleRight.transform.position   = new Vector3(35, 0, 0);
+		paddleManager.LeftPaddleSpeed                  = 50f;
+		paddleManager.RightPaddleSpeed                 = 50f;
 	}
 
 	private void ResetBall(int scoringPlayer) {

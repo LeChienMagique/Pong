@@ -284,7 +284,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 30d5751051ea2ae4daa3c8454c52e725, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c551ee9b0f6492441ae9ee7d22adc35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Period: 2
+  Period: 4
   PowerUpPrefab: {fileID: 8439529436798352280, guid: 51e3aef87625caf48960a53fd8c498d3, type: 3}
   PaddleManagerGO: {fileID: 154843802}
 --- !u!4 &816860313
@@ -1269,6 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ball: {fileID: 99711913}
+  PaddleManager: {fileID: 0}
   PowerUpSpawner: {fileID: 816860311}
   ScoreText: {fileID: 1169775910}
 --- !u!4 &1584561044
