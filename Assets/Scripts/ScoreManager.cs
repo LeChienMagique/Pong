@@ -7,8 +7,12 @@ public class ScoreManager: MonoBehaviour {
 	private int player1Score;
 	private int player2Score;
 
+	public  GameObject     PowerUpSpawner;
+	private PowerUpSpawner powerUpSpawner;
+
 	private void Start() {
 		ballController = Ball.GetComponent<BallController>();
+		powerUpSpawner = PowerUpSpawner.GetComponent<PowerUpSpawner>();
 	}
 
 	private string PlayerIDToString(int playerId) => playerId == 1 ? "Left" : "Right";
@@ -28,9 +32,14 @@ public class ScoreManager: MonoBehaviour {
 			Debug.Log($"{PlayerIDToString(player)} paddle scored, score is now: {player1Score} - {player2Score}");
 		}
 		ResetBall(player);
+		KillPowerUps();
 	}
 
 	private void ResetBall(int scoringPlayer) {
 		ballController.ResetPosition(scoringPlayer);
+	}
+
+	private void KillPowerUps() {
+		powerUpSpawner.RemovePowerUps();
 	}
 }

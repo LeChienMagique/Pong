@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeedMultiplier: 0.2
-  Speed: 25
+  LastPlayerTouched: 1
 --- !u!1 &154843802
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +304,8 @@ MonoBehaviour:
   PaddleRight: {fileID: 315423694}
   BorderTop: {fileID: 1789860496}
   BorderBottom: {fileID: 1077332188}
-  PaddleSpeed: 50
+  LeftPaddleSpeed: 50
+  RightPaddleSpeed: 50
 --- !u!4 &154843804
 Transform:
   m_ObjectHideFlags: 0
@@ -596,7 +597,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -655,6 +656,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &816860311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816860313}
+  - component: {fileID: 816860312}
+  m_Layer: 0
+  m_Name: PowerUpSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &816860312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816860311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c551ee9b0f6492441ae9ee7d22adc35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Period: 2
+  PowerUpPrefab: {fileID: 8439529436798352280, guid: 51e3aef87625caf48960a53fd8c498d3, type: 3}
+  PaddleManagerGO: {fileID: 154843802}
+--- !u!4 &816860313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816860311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,7 +916,7 @@ GameObject:
   - component: {fileID: 1584561044}
   - component: {fileID: 1584561043}
   m_Layer: 0
-  m_Name: ScoreController
+  m_Name: ScoreManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -887,6 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ball: {fileID: 99711913}
+  PowerUpSpawner: {fileID: 816860311}
 --- !u!4 &1584561044
 Transform:
   m_ObjectHideFlags: 0

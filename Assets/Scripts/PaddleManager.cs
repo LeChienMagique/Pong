@@ -12,7 +12,8 @@ public class PaddleManager: MonoBehaviour {
 	private BoxCollider borderTopColl;
 	private BoxCollider borderBottomColl;
 
-	public float PaddleSpeed = 5f;
+	public float LeftPaddleSpeed  = 50f;
+	public float RightPaddleSpeed = 50f;
 
 	void Start() {
 		paddleLeftColl   = PaddleLeft.GetComponent<BoxCollider>();
@@ -25,8 +26,8 @@ public class PaddleManager: MonoBehaviour {
 		float player1 = Input.GetAxisRaw("Player1");
 		float player2 = Input.GetAxisRaw("Player2");
 
-		float p1Force = player1 * PaddleSpeed * Time.deltaTime;
-		float p2Force = player2 * PaddleSpeed * Time.deltaTime;
+		float p1Force = player1 * LeftPaddleSpeed * Time.deltaTime;
+		float p2Force = player2 * RightPaddleSpeed * Time.deltaTime;
 		UpdatePaddlePos(PaddleLeft, paddleLeftColl, p1Force);
 		UpdatePaddlePos(PaddleRight, paddleRightColl, p2Force);
 	}
